@@ -1,0 +1,92 @@
+/* CSS - Message Box */
+
+/* Hidden */
+#message-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+    border: 1px solid rgba(47, 83, 160, 0.5);
+    border-radius: 10px;
+    padding: 9px;
+    background-color: #00000010;
+    box-shadow: 0px 0px 8px #bfbfbf42;
+    min-width: 14%;
+}
+
+/* Visible */
+#message-box.visible {
+    pointer-events: all;
+    visibility: visible;
+    opacity: 1;
+}
+
+#message-box.visible #content {
+    animation: contentSlide 0.5s ease-out;
+}
+
+/* Title / Content */
+#message-box #title {
+    font-family: 'Josefin';
+    color: white;
+    text-align: center;
+}
+
+#message-box #content {
+    font-family: 'Josefin';
+    color: white;
+}
+
+/* Info */
+#message-box.info {
+    background-color: #98b4f921;
+}
+
+#message-box.info #title {
+    color: #c1daf0;
+}
+
+/* Error */
+#message-box.error {
+    background-color: #d4263221;
+    border-color: rgba(183, 66, 66, 0.7);
+}
+
+#message-box.error #title {
+    color: #ffb99e;
+}
+
+/* Warning */
+#message-box.warning {
+    background-color: #caf84c21;
+    border-color: rgba(151, 170, 60, 0.7);
+}
+
+#message-box.warning #title {
+    color: #d9e894;
+}
+
+/* Default */
+#message-box.default {
+    background-color: #ffffff21;
+    border-color: rgba(135, 135, 135, 0.7);
+}
+
+#message-box.default #title {
+    color: #d4d4d4ab;
+}
+
+/* Animations */
+@keyframes contentSlide {
+    0% {
+        transform: translateX(-8%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}

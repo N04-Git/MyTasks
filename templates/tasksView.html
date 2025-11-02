@@ -1,0 +1,27 @@
+<!-- Template -->
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}MyTasks - {{ project_data['name'] }}{% endblock %}
+
+<!-- CSS -->
+{% block css_extra %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tasksView.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tasksView_mobile.css') }}">
+{% endblock %}
+
+<!-- Body -->
+{% block content %}
+    <main>
+        <h1>tasksView</h1>
+    </main>
+{% endblock %}
+
+<!-- JS -->
+{% block js_extra %}
+<script src="{{ url_for('static', filename='js/projectsManager.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tasksView.js') }}"></script>
+<script>
+    const project_id = "{{ project_id }}";
+</script>
+{% endblock %}

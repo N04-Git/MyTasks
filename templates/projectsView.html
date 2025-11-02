@@ -1,0 +1,73 @@
+<!-- Template -->
+{% extends "base.html" %}
+
+<!-- Title -->
+{% block title %}MyTasks{% endblock %}
+
+<!-- CSS -->
+{% block css_extra %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/projectsView.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/projectsView_mobile.css') }}">
+{% endblock %}
+
+<!-- Body -->
+{% block content %}
+    <main>
+        <!-- Left Panel : Projects List -->
+        <div id="projects-list" class="container">
+            <!-- Items wrapper -->
+            <div id="wrapper">
+                <!-- div.item -->
+            </div>
+
+            <!-- New project button -->
+            <div id="new-project-container">
+                <h2>New Project</h2>
+            </div>
+
+            <!-- Project Creation Sub Panel -->
+            <div id="new-project-panel">
+                <h2>New Project</h2>
+
+                <!-- Name -->
+                <div class="field">
+                    <label for="name">Project Name</label>
+                    <input id="name" type="text">
+                </div>
+
+                <!-- Description -->
+                <div class="field">
+                    <textarea id="description" name="description" placeholder="Description"></textarea>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Right Panel : Project Info -->
+        <div id="project-info" class="container">
+            <h1 id="title">Title</h1>
+            <p id="description">Description</p>
+            <h3 id="created">Created on DD/MM/YYYY</h3>
+            <h3 id="remaining">Remaining tasks : 999</h3>
+            <h3 id="completed">Completed tasks : 999</h3>
+            <button id="edit-btn">Edit</button>
+            <button id="delete-btn">Delete</button>
+        </div>
+
+    </main>
+
+    <!-- Confirm Box -->
+    <div id="confirm-box">
+        <h2>Confirm Operation</h2>
+        <div class="wrapper">
+            <button id="yes">Yes</button>
+            <button id="no">No</button>
+        </div>
+    </div>
+{% endblock %}
+
+<!-- JS -->
+{% block js_extra %}
+<script src="{{ url_for('static', filename='js/projectsManager.js') }}"></script>
+<script src="{{ url_for('static', filename='js/projectsView.js') }}"></script>
+{% endblock %}

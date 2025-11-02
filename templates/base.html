@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Unset Title{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_typo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_message.css') }}">
+    {% block css_extra %}{% endblock %}
+</head>
+<body>    
+    <!-- HTML -->
+    {% block content %}
+    <p>
+        Default content
+    </p>
+    {% endblock %}
+    
+    <div id="message-box" class="hidden">
+        <h2 id="title"></h2>
+        <p id="content"></p>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/_message.js') }}"></script>
+    {% block js_extra %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,299 @@
+/* Projects View - CSS */
+
+/* Global */
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    transition: filter 1s ease;
+}
+
+main.blurry {
+    filter: blur(10px);
+}
+
+/* Panels */
+.container {
+    background-color: rgba(133, 133, 176, 0.035);
+    border: 1px solid rgb(72, 56, 110);
+    border-radius: 9px;
+    border-bottom: 0;
+    height: 93%;
+}
+
+/* Left Panel */
+#projects-list {
+    width: 70%;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#projects-list > #wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    height: fit-content;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+#projects-list > #wrapper > .item {
+    width: 180px;
+    border: 1px solid rgba(75, 18, 160, 0.51);
+    border-radius: 4px;
+    padding: 10px;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+#projects-list > #wrapper > .item:hover {
+    border: 1px solid rgba(75, 18, 160, 0.7);
+    background-color: rgba(64, 84, 127, 0.2);
+    box-shadow: 0px 0px 8px rgb(36, 17, 64);
+}
+
+#projects-list > #wrapper > .item > h3 {
+    text-align: center;
+    color: rgba(114, 122, 130, 0.7);
+    font-family: 'Josefin';
+}
+
+#projects-list > #new-project-container {
+    border: 1px solid rgba(58, 70, 93, 0.3);
+    background-color: rgba(69, 64, 89, 0.2);
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    bottom: -1%;
+    transform: translateX(-50%);
+    width: 30%;
+    transition: all 0.4s;
+}
+
+#projects-list > #new-project-container:hover {
+    border: 1px solid rgba(104, 129, 136, 0.8);
+}
+
+#projects-list > #new-project-container > h2 {
+    font-family: 'Josefin';
+    color: rgba(104, 129, 136, 0.4);
+    text-align: center;
+    transition: all 0.4s;
+}
+
+#projects-list > #new-project-container:hover h2 {
+    transform: scale(105%);
+    color: rgba(104, 129, 136, 0.8);
+}
+
+#projects-list > #new-project-panel {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    height: fit-content;
+    transform: translateX(-50%);
+    border: 1px solid rgb(72, 56, 110);
+    background-color: #2d2d2d85;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    gap: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+#projects-list > #new-project-panel.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+#projects-list > #new-project-panel h2 {
+    color: white;
+    text-align: center;
+}
+
+#projects-list > #new-project-panel .field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #55727712;
+    box-shadow: 0px 0px 4px rgba(80, 80, 80, 0.164);
+    border-radius: 5px;
+}
+
+#projects-list > #new-project-panel .field > * {
+    margin: 0 10px;
+}
+
+#projects-list > #new-project-panel .field > textarea {
+    width: 400px;
+    height: 200px;
+    background-color: #35353514;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(54, 54, 54, 0.84);
+    padding: 10px;
+}
+
+
+
+
+/* Right Panel */
+#project-info {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 10px;
+    justify-content: flex-start;
+}
+
+#project-info > * {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#project-info.visible > * {
+    visibility: visible;
+    pointer-events: all;
+    opacity: 1;
+}
+
+#project-info #description, #project-info #created, #project-info #remaining, #project-info #completed {
+    color: #ca9ed7;
+}
+
+#project-info #title {
+    font-family: 'Josefin';
+    text-decoration: underline;
+    text-align: center;
+    color: #eeb4e5;
+    align-self: center;
+}
+
+#project-info #description {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgba(144, 132, 212, 0.5);
+    padding: 30px 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#project-info #completed {
+    border-bottom: 1px solid rgba(144, 132, 212, 0.5);;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+#project-info #created::before,
+#project-info #remaining::before,
+#project-info #completed::before {
+    color: #00000000;
+    content: '•';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    background-color: #cf9dde;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+#project-info > button {
+    width: 90%;
+    height: 30px;
+    margin: 11px 0;
+    box-sizing: border-box;
+    align-self: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+#project-info #edit-btn {
+    border: 1px solid rgba(73, 112, 141, 0.5);
+    background-color: rgba(39, 42, 61, 0.3);
+    color: #b4b4ee;
+}
+
+#project-info #edit-btn:hover {
+    border: 1px solid rgba(73, 112, 141, 0.7);
+    background-color: rgba(54, 58, 83, 0.5);
+    color: #b4b4ee;
+}
+
+#project-info #delete-btn {
+    border: 1px solid rgba(141, 73, 73, 0.5);
+    background-color: rgba(137, 48, 48, 0.3);
+    color: #d03e3e;
+}
+
+#project-info #delete-btn:hover {
+    border: 1px solid rgba(141, 73, 73, 0.7);
+    background-color: rgba(137, 48, 48, 0.5);
+    color: #d03e3e;
+}
+
+/* Confirm Box */
+#confirm-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 1s;
+    pointer-events: none;
+    border: 1px solid #8a8a8a;
+    padding: 30px;
+    border-radius: 7px;
+    background-color: #80808057;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+#confirm-box.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#confirm-box h2 {
+    height: fit-content;
+    color: rgb(226, 226, 226);
+    margin: 0;
+}
+
+#confirm-box .wrapper {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#confirm-box .wrapper button {
+    width: 40%;
+}
