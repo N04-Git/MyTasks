@@ -14,7 +14,8 @@ main > #wrapper {
     width: 97%;
     overflow-x: auto;
     border-radius: 10px;
-    background-color: rgba(0, 0, 255, 0.139);
+    background-color: rgba(44, 44, 44, 0.3);
+    border: 1px solid rgb(72, 56, 110);
     box-sizing: border-box;
     padding: 10px;
     display: flex;
@@ -31,8 +32,8 @@ main > #wrapper {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
-    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(72, 56, 110, 0.6);
+    background-color: rgba(43, 43, 43, 0.1);
     padding: 24px;
     z-index: 3;
     backdrop-filter: blur(4px);
@@ -98,8 +99,9 @@ main > #wrapper #categories > div.item {
     width: 300px;
     height: 95%;
     margin: 10px;
-    border: 1px solid green;
-    background-color: rgba(240, 248, 255, 0.199);
+    border: 1px solid rgba(58, 49, 80, 0.43);
+    border-radius: 5px;
+    background-color: rgba(85, 85, 85, 0.199);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -109,7 +111,8 @@ main > #wrapper #categories > div.item {
 
 /* Categories > Tasks */
 main > #wrapper #categories > div.item > .info {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(58, 49, 80, 0.7);
+    margin-bottom: 10px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -128,6 +131,7 @@ main > #wrapper #categories > div.item > .info > #title {
 main > #wrapper #categories > div.item > .info > #new-task {
     width: 70%;
     height: 30px;
+    margin-bottom: 15px;
 }
 
 main > #wrapper #categories > div.item > .info > #option {
@@ -138,7 +142,7 @@ main > #wrapper #categories > div.item > .info > #option {
     right: 8px;
 }
 
-main > #wrapper #categories > div.item > .info > #option-menu {
+/* main > #wrapper #categories > div.item > .info > #option-menu {
     position: absolute;
     border: 1px solid white;
     box-sizing: border-box;
@@ -154,7 +158,7 @@ main > #wrapper #categories > div.item > .info > #option-menu {
     pointer-events: none;
     opacity: 0;
     z-index: 2;
-}
+} */
 
 main > #wrapper #categories > div.item > .info > #option-menu.visible {
     visibility: visible;
@@ -164,14 +168,15 @@ main > #wrapper #categories > div.item > .info > #option-menu.visible {
 
 main > #wrapper #categories > div.item > .container {
     padding: 10px;
-    border: 1px solid rgb(49, 33, 120);
     width: 100%;
     height: max-content;
     box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 main > #wrapper #categories > div.item > .container > .item {
-    border: 1px solid white;
+    border: 1px solid rgb(80, 80, 95);
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -179,6 +184,11 @@ main > #wrapper #categories > div.item > .container > .item {
     margin-bottom: 10px;
     border-radius: 10px;
     position: relative;
+    transition: all 0.4s;
+}
+
+main > #wrapper #categories > div.item > .container > .item:hover {
+    background-color: rgba(60, 63, 78, 0.1);
 }
 
 main > #wrapper #categories > div.item > .container > .item > #title {
@@ -186,17 +196,22 @@ main > #wrapper #categories > div.item > .container > .item > #title {
     padding-left: 15%;
     width: 100%;
     margin: 10px;
+    font-size: large;
 }
 
 main > #wrapper #categories > div.item > .container > .item > #description {
     color: white;
     height: fit-content;
     margin: 10px;
+    font-size: small;
 }
 
 main > #wrapper #categories > div.item > .container > .item > #complete {
-    color: white;
-    width: 90%;
+    width: 50%;
+}
+
+main > #wrapper #categories > div.item > .container > .item > #complete:hover {
+    background-color: rgba(64, 89, 71, 0.2);
 }
 
 main > #wrapper #categories > div.item > .container > .item > #option {
@@ -207,12 +222,12 @@ main > #wrapper #categories > div.item > .container > .item > #option {
     height: 22px;
 }
 
-main > #wrapper #categories > div.item > .container > .item > #option-menu {
+main > #wrapper #categories > div.item > .container > .item > #option-menu,
+main > #wrapper #categories > div.item > .info > #option-menu {
     position: absolute;
-    border: 1px solid white;
+    backdrop-filter: blur(5px);
+    padding: 30px 15px;
     box-sizing: border-box;
-    padding: 10px;
-    background-color: black;
     top: 5px;
     left: 99%;
     display: flex;
@@ -233,11 +248,14 @@ main > #wrapper #categories > div.item > .container > .item > #option-menu.visib
 
 /* Buttons */
 main > #wrapper #buttons {
+    border: 1px solid rgba(72, 56, 110, 0.2);
+    background-color: rgba(39, 38, 38, 0.4);
+    border-radius: 6px;
+    min-height: 50%;
     display: flex;
     height: fit-content;
     flex-direction: column;
     box-sizing: border-box;
-    background-color: rgba(240, 248, 255, 0.199);
     padding: 10px;
     margin: 0px 46px;
 }
