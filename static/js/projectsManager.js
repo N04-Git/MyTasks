@@ -83,3 +83,97 @@ function _updateProject(project_id, project_name, project_description) {
         })
     )
 }
+
+function _addCategory(project_id, category_name) {
+    body = JSON.stringify({
+        'project_id':project_id,
+        'category_name':category_name,
+    })
+    return fetch('/addCategory', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: body
+    }).then(
+        ((res) => {
+            return res.json()
+        })
+    )
+}
+
+function _removeCategory (project_id, category_id) {
+    body = JSON.stringify({
+        'project_id':project_id,
+        'category_id':category_id
+    })
+    return fetch('/removeCategory', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: body
+    }).then(
+        ((res) => {
+            return res.json()
+        })
+    )
+}
+
+function _addTask(project_id, category_id, task_name, task_description) {
+    body = JSON.stringify({
+        'project_id':project_id,
+        'category_id':category_id,
+        'task_name':task_name,
+        'task_description':task_description
+    })
+    return fetch('/addTask', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: body
+    }).then(
+        ((res) => {
+            return res.json()
+        })
+    )
+}
+
+function _removeTask (project_id, category_id, task_id) {
+    body = JSON.stringify({
+        'project_id':project_id,
+        'category_id':category_id,
+        'task_id':task_id
+    })
+    return fetch('/removeTask', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: body
+    }).then(
+        ((res) => {
+            return res.json()
+        })
+    )
+}
+
+function _completeTask (project_id, category_id, task_id) {
+    body = JSON.stringify({
+        'project_id':project_id,
+        'category_id':category_id,
+        'task_id':task_id
+    })
+    return fetch('/completeTask', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: body
+    }).then(
+        ((res) => {
+            return res.json()
+        })
+    )
+}

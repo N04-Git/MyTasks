@@ -21,6 +21,7 @@ def verifyFields(received_data:dict, required_fields:list) -> bool:
     """
     for field in required_fields:
         if not field in received_data:
+            print('Missing field : ', field)
             return False
     return True
 
@@ -28,9 +29,10 @@ def makeResponse(content:str, kind:int, additional_data={}):
     """
     Returns jsonified response\n
     Kind :\n
-        0 >> Info
+        0 >> Info (message may not be shown)
         1 >> Error
         2 >> Warning
+        3 >> Info (message should be shown)
     """
     return jsonify({'kind':kind, 'msg':content}|additional_data)
 
@@ -43,8 +45,8 @@ def home():
 def project():
     pID = request.args.get('id', type=str)
 
-    pJSON = pManager.getProject(pID)
-    
+    pJSON = pManager.getProject(pID, True)
+
     return render_template('tasksView.html', project_id=pID, project_data=pJSON)
 
 # Backend - DATA Routes
@@ -159,8 +161,7 @@ def addCategory():
 @app.route('/removeCategory', methods=['POST'])
 def removeCategory():
     data = request.get_json()
-
-    if verifyFields(
+    if not verifyFields(
         data,
         ['project_id', 'category_id']
     ):
@@ -209,7 +210,7 @@ def addTask():
 def removeTask():
     data = request.get_json()
 
-    if verifyFields(
+    if not verifyFields(
         data,
         ['project_id', 'category_id', 'task_id']
     ):
@@ -218,6 +219,20 @@ def removeTask():
     if pManager.removeTask(data['project_id'], data['category_id'], data['task_id']):
         return makeResponse("Success", 0)
     return makeResponse("Task not deleted", 2)
+
+@app.route('/completeTask', methods=['POST'])
+def completeTask():
+    data = request.get_json()
+
+    if not verifyFields(
+        data,
+        ['project_id', 'category_id', 'task_id']
+    ):
+        return makeResponse("Missing field", 1)
+
+    if pManager.completeTask(data['project_id'], data['category_id'], data['task_id']):
+        return makeResponse("Well Done !", 3)
+    return makeResponse("Task not set as completed", 2)
 
 # Run
 if __name__ == "__main__":

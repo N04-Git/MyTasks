@@ -13,7 +13,79 @@
 <!-- Body -->
 {% block content %}
     <main>
-        <h1>tasksView</h1>
+
+        <div id="new-category-card" class="card">
+            <button onclick="closeCard()" id="back-btn">-</button>
+            <h3>New Category</h3>
+            <div id="name" class="field">
+                <label>Name</label>
+                <input type="text">
+            </div>
+            <button onclick="addCategory()">Add</button>
+        </div>
+
+        <div id="new-task-card" class="card">
+            <button onclick="closeCard()" id="back-btn">-</button>
+            <h3>New Task</h3>
+            <div id="name" class="field">
+                <label>Name</label>
+                <input type="text">
+            </div>
+            <div id="description" class="field">
+                <textarea placeholder="Description"></textarea>
+            </div>
+
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <div id="wrapper">
+            <!-- Categories -->
+            <div id="categories">
+
+                {% for category_key, category_value in project_data.categories.items() %}
+                <!-- Category Item -->
+                <div class="item" data-id="{{ category_key }}">
+
+                    <div class="info">
+                        <h4 id="title">{{ category_value['name'] }}</h4>
+                        <button id="new-task">New Task</button>
+                        <button id="option">=</button>
+                        <div id="option-menu">
+                            <button id="edit">Edit</button>
+                            <button id="delete">Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        {% for task_id, task_value in category_value['tasks'].items() %}
+                        {% if task_value['visible'] == true %}
+                        <!-- Task Item -->
+                        <div class="item" data-id="{{ task_id }}">
+                            <h5 id="title">{{ task_value['name'] }}</h5>
+                            <p id="description">
+                                {{ task_value['description'] }}
+                            </p>
+                            <button id="complete">Completed</button>
+                            <button id="option">=</button>
+                            <div id="option-menu">
+                                <button id="edit">Edit</button>
+                                <button id="delete">Delete</button>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Buttons -->
+            <div id="buttons">
+                <button id="add-category">Add Category</button>
+            </div>
+        </div>
     </main>
 {% endblock %}
 
@@ -22,6 +94,6 @@
 <script src="{{ url_for('static', filename='js/projectsManager.js') }}"></script>
 <script src="{{ url_for('static', filename='js/tasksView.js') }}"></script>
 <script>
-    const project_id = "{{ project_id }}";
+    const PROJECT_ID = "{{ project_id }}";
 </script>
 {% endblock %}

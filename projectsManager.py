@@ -77,7 +77,10 @@ class ProjectManager:
         
         return (ids, projects)
 
-    def getProject(self, project_id:str) -> list:
+    def getProject(self, project_id:str, reloadFile=False) -> list:
+        if reloadFile:
+            self.readJson()
+            
         return self.json_content.get(project_id, [])
 
     def addProject(self, project_name:str, project_description:str) -> str:
@@ -162,7 +165,7 @@ class ProjectManager:
         return True
 
     # Project > Category > Task
-    def getTasks(self, project_id:str, category_id:str) -> tuple[list, list]:
+    def getTasks(self, project_id:str, category_id:str) -> tuple[list, list]:   
         tasks = []
         keys = list(self.json_content[project_id]["categories"][category_id]["tasks"].keys())
         for key in keys:
@@ -178,6 +181,7 @@ class ProjectManager:
         task = {
             "name":         task_name,
             "description":  task_description,
+            "visible":      True, # Visible by default
         }
 
         self.json_content[project_id]["categories"][category_id]["tasks"][taskID] = task
@@ -195,3 +199,30 @@ class ProjectManager:
         
         self.updateJson()
         return True
+
+    def completeTask(self, project_id:str, category_id:str, task_id:str) -> bool:
+        """
+        Returns True is task has been set as 'completed'
+        """
+        try:
+            self.json_content[project_id]["categories"][category_id]["tasks"][task_id]['visible'] = False
+        except:
+            print(f'[PM] No such task id : {project_id} >> {category_id} >> {task_id}')
+            return False
+
+        self.updateJson()
+        return True
+
+# SANDBOX
+if __name__ == '__main__':
+
+    pm = ProjectManager('data\\projects.json')
+
+    pID = '0'
+
+    catID = pm.addCategory(pID, 'my category')
+
+    pm.addTask(pID, catID, "title", "task description")
+    pm.addTask(pID, catID, "title2", "description 2")
+    pm.addTask(pID, catID, "title3", "description 3")
+    pm.addTask(pID, catID, "title4", "description 4")
